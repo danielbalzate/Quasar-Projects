@@ -137,7 +137,11 @@ module.exports = function(ctx) {
       bundler: "packager", // 'packager' or 'builder'
 
       packager: {
+<<<<<<< HEAD
         platform: "linux"
+=======
+        platform: "win32"
+>>>>>>> 2c52ca21420308e1e5e09605ee7b4b8e9be3cd3b
         // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
         // OS X / Mac App Store
         // appBundleId: '',

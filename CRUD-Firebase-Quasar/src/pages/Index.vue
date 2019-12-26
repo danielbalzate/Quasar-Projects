@@ -29,6 +29,7 @@
       :toolbar="[
         ['bold', 'italic', 'strike', 'underline'],
         ['quote', 'unordered', 'ordered'],
+<<<<<<< HEAD
         [
           {
             label: $q.lang.editor.formatting,
@@ -37,6 +38,8 @@
             options: ['p', 'h3', 'h4', 'h5', 'h6']
           }
         ],
+=======
+>>>>>>> 2c52ca21420308e1e5e09605ee7b4b8e9be3cd3b
         [('upload', 'save')]
       ]"
     />
@@ -59,6 +62,7 @@
       :toolbar="[
         ['bold', 'italic', 'strike', 'underline'],
         ['quote', 'unordered', 'ordered'],
+<<<<<<< HEAD
         [
           {
             label: $q.lang.editor.formatting,
@@ -67,6 +71,8 @@
             options: ['p', 'h3', 'h4', 'h5', 'h6']
           }
         ],
+=======
+>>>>>>> 2c52ca21420308e1e5e09605ee7b4b8e9be3cd3b
         [('upload', 'save')]
       ]"
     />
@@ -173,7 +179,11 @@ export default {
         const resDB = await db.collection("tasks").get();
 
         resDB.forEach(res => {
+<<<<<<< HEAD
           // console.log(res.id);
+=======
+          console.log(res.id);
+>>>>>>> 2c52ca21420308e1e5e09605ee7b4b8e9be3cd3b
           const task = {
             id: res.id,
             text: res.data().text,
