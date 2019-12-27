@@ -1,14 +1,5 @@
 <template>
   <div class="q-pa-md q-gutter-sm">
-    <!-- <div class="flex flex-center">
-      <q-btn
-        icon="post_add"
-        label="Agregar nueva nota"
-        stack
-        glossy
-        color="primary"
-      />
-    </div> -->
     <!-- Editor -->
     <q-editor
       v-if="!modeEdition"
@@ -115,12 +106,7 @@ export default {
             id: "chamuchomaso",
             text: "jaja",
             status: false
-          },
-          {
-            id: "chamuchomaso",
-            text: "jaja",
-            status: false
-          } */
+          } .. */
       ],
       index: null,
       modeEdition: false,

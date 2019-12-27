@@ -2,8 +2,11 @@
 .thumbs.db
 node_modules
 
-# Quasar core related directories
+# Quasar 
 firebase.js
+
+# Electron 
+/src-electron
 
 # Quasar core related directories
 .quasar

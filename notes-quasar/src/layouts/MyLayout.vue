@@ -12,10 +12,33 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          {{ title }}
         </q-toolbar-title>
+        <q-btn
+          v-if="!userDetails.userId"
+          no-caps
+          dense
+          flat
+          to="/auth"
+          icon="account_circle"
+          class="absolute-right q-pr-sm"
+          label="Ingresar"
+        >
+        </q-btn>
+        <q-btn
+          v-else
+          @click="logoutUser"
+          no-caps
+          dense
+          flat
+          to="/auth"
+          icon="account_circle"
+          class="absolute-right q-pr-sm"
+          >Cerrar Sesión<br />
+          {{ userDetails.name }}
+        </q-btn>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <!-- <div>Daniel Buitrago</div> -->
       </q-toolbar>
     </q-header>
 
@@ -26,59 +49,41 @@
       content-class="bg-grey-2"
     >
       <q-list>
-        <q-item-label header>Essential Links</q-item-label>
-        <q-item clickable tag="a" target="_blank" href="https://quasar.dev">
+        <q-item-label header>Menú de tareas</q-item-label>
+        <!-- Primer Botón -->
+        <q-item clickable to="/#">
           <q-item-section avatar>
-            <q-icon name="school" />
+            <q-icon name="account_circle" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Docs</q-item-label>
-            <q-item-label caption>quasar.dev</q-item-label>
+            <q-item-label>Base</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://github.quasar.dev">
+        <!-- Segúndo Botón -->
+        <q-item clickable to="/notes">
           <q-item-section avatar>
-            <q-icon name="code" />
+            <q-icon name="playlist_add_check" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Github</q-item-label>
-            <q-item-label caption>github.com/quasarframework</q-item-label>
+            <q-item-label>Notas</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://chat.quasar.dev">
+        <!-- Tercero Botón -->
+        <q-item clickable to="/users">
           <q-item-section avatar>
-            <q-icon name="chat" />
+            <q-icon name="face" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Discord Chat Channel</q-item-label>
-            <q-item-label caption>chat.quasar.dev</q-item-label>
+            <q-item-label>Usuario</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://forum.quasar.dev">
+        <!-- Cuarto Botón -->
+        <q-item clickable to="/auth">
           <q-item-section avatar>
-            <q-icon name="record_voice_over" />
+            <q-icon name="directions_run" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Forum</q-item-label>
-            <q-item-label caption>forum.quasar.dev</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://twitter.quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="rss_feed" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Twitter</q-item-label>
-            <q-item-label caption>@quasarframework</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://facebook.quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="public" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Facebook</q-item-label>
-            <q-item-label caption>@QuasarFramework</q-item-label>
+            <q-item-label>Autentificación</q-item-label>
           </q-item-section>
         </q-item>
       </q-list>
@@ -91,13 +96,30 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 export default {
-  name: 'MyLayout',
-
-  data () {
+  computed: {
+    ...mapState("store", ["userDetails"]),
+    title() {
+      let currentPath = this.$route.fullPath;
+      if (currentPath == "/#") return "Página principal putos!";
+      else if (currentPath == "/notes") return "Bloc de notas";
+      else if (currentPath == "/users") return "Usuarios";
+      else if (currentPath == "/auth") return "Autentificación";
+    }
+  },
+  methods: {
+    ...mapActions("store", ["logoutUser"])
+  },
+  data() {
     return {
       leftDrawerOpen: false
-    }
+    };
   }
-}
+};
 </script>
+<style lang="stylus">
+.q-toolbar
+  .q-btn
+    line-height :1.2
+</style>
