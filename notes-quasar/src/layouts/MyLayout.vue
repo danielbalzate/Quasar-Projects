@@ -54,6 +54,15 @@
             <q-item-label>Base</q-item-label>
           </q-item-section>
         </q-item> -->
+        <!-- Primer Botón -->
+        <q-item v-if="userDetails.userId" clickable to="/userProfile">
+          <q-item-section avatar>
+            <q-icon name="face" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Mi perfil</q-item-label>
+          </q-item-section>
+        </q-item>
         <!-- Segúndo Botón -->
         <q-item v-if="userDetails.userId" clickable to="/notes">
           <q-item-section avatar>

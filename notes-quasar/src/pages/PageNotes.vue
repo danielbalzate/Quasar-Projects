@@ -68,9 +68,10 @@
         class="col"
         v-html="item.text"
         :class="item.status ? 'tachar' : ''"
-      >
+        ><br />
       </q-card-section>
-      <div class="col-4 self-center">
+
+      <div class="col-3 self-center">
         <q-btn
           flat
           color="amber"
@@ -87,6 +88,9 @@
         >
       </div>
       <q-space />
+      <q-card-section>
+        <q-rating size="24px" v-model="stars" :max="5" />
+      </q-card-section>
     </q-card>
     <div v-if="tasks.length == 0" class="flex flex-center">
       <p class="text-h6">Sin notas</p>
@@ -100,6 +104,7 @@ export default {
   data() {
     return {
       editor: "",
+      stars: 5,
       tasks: [
         /* ACÁ ESTÁ LOS ARRAYS DE FIREBASE
           {

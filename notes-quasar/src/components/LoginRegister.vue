@@ -5,22 +5,42 @@
       v-if="tab == '¡Registrate!'"
       class="q-mb-md"
       outlined
+      filled
+      hint="Ingresa tu nombre o apodo"
       v-model="formData.name"
       label="Nombre"
-    ></q-input>
+    >
+      <template v-slot:append>
+        <q-icon name="perm_identity" />
+      </template>
+    </q-input>
     <q-input
+      filled
       class="q-mb-md"
       outlined
       v-model="formData.email"
       type="email"
+      hint="Ingresa tu correo electrónico."
       label="Correo electrónico"
-    ></q-input>
+      ><template v-slot:append>
+        <q-icon name="mail" />
+      </template>
+    </q-input>
     <q-input
       class="q-mb-md"
       outlined
       v-model="formData.password"
-      type="password"
+      filled
+      :type="isPwd ? 'password' : 'text'"
+      hint="Ingresa tu contraseña."
       label="Contraseña"
+    >
+      <template v-slot:append>
+        <q-icon
+          :name="isPwd ? 'visibility_off' : 'visibility'"
+          class="cursor-pointer"
+          @click="isPwd = !isPwd"
+        /> </template
     ></q-input>
     <div class="row justify-center">
       <q-btn
@@ -43,7 +63,8 @@ export default {
         name: "",
         email: "",
         password: ""
-      }
+      },
+      isPwd: true
     };
   },
   methods: {

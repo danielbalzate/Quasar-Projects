@@ -4,6 +4,10 @@ const routes = [
     component: () => import("layouts/MyLayout.vue"),
     children: [
       { path: "", component: () => import("pages/PageBase.vue") },
+      {
+        path: "/userProfile",
+        component: () => import("pages/PageUserProfile.vue")
+      },
       { path: "/users", component: () => import("pages/PageUsers.vue") },
       { path: "/auth", component: () => import("pages/PageAuth.vue") },
       { path: "/notes", component: () => import("pages/PageNotes.vue") }

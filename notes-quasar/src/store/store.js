@@ -1,6 +1,6 @@
 import Vue from "vue";
 import { firebaseAuth, firebaseDB } from "boot/firebase";
-
+import { Notify } from "quasar";
 const state = {
   userDetails: {},
   users: {}
@@ -33,6 +33,12 @@ const actions = {
       })
       .catch(error => {
         console.log(error.message);
+        Notify.create({
+          position: 'top',
+          message: "Por favor verifica tu correo o tu contraseña",
+          color: "warning",
+          icon: "error_outline"
+        });
       });
   },
   loginUser({}, payload) {
@@ -48,7 +54,13 @@ const actions = {
         }); */
       })
       .catch(error => {
-        console.log(error.message);
+        console.log("Error al ingresar", error.message);
+        Notify.create({
+          position: 'top',
+          message: "Por favor verifica tu correo o tu contraseña",
+          color: "warning",
+          icon: "error_outline"
+        });
       });
   },
   logoutUser({ commit, dispatch }) {
