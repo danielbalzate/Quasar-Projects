@@ -10,7 +10,7 @@
       >
         <q-item-section avatar>
           <q-avatar color="teal" text-color="white">
-            {{ user.name }}
+            {{ user.name.charAt(0) }}
           </q-avatar>
         </q-item-section>
 
@@ -29,22 +29,6 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-  /* data() {
-    return {
-      users: [
-        {
-          id: 1,
-          name: "Daniel",
-          online: true
-        },
-        {
-          id: 2,
-          name: "Felicia",
-          online: false
-        }
-      ]
-    };
-  }, */
   computed: {
     ...mapGetters("store", ["users"])
   }

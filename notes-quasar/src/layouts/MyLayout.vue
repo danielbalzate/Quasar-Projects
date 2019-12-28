@@ -44,7 +44,7 @@
 
     <q-drawer v-model="leftDrawerOpen" bordered content-class="bg-grey-2">
       <q-list>
-        <q-item-label header>Menú de tareas</q-item-label>
+        <q-item-label header>Menú principal</q-item-label>
         <!-- Primer Botón -->
         <!-- <q-item clickable to="/#">
           <q-item-section avatar>

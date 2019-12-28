@@ -51,10 +51,17 @@ const actions = {
         console.log(error.message);
       });
   },
-  logoutUser() {
+  logoutUser({ commit, dispatch }) {
     firebaseAuth.signOut();
+    dispatch("firebaseUpdateUser", {
+      userId: state.userDetails.userId,
+      updates: {
+        online: false
+      }
+    });
+    commit("setUserDetails", {});
   },
-  handleAuthStateChanged({ commit, dispatch, state }) {
+  handleAuthStateChanged({ commit, dispatch }) {
     firebaseAuth.onAuthStateChanged(user => {
       if (user) {
         let userId = firebaseAuth.currentUser.uid;
@@ -73,16 +80,11 @@ const actions = {
           }
         });
         dispatch("firebaseGetUsers");
-        this.$router.push("/");
+        this.$router.push("/notes");
       } else {
-        dispatch("firebaseUpdateUser", {
-          userId: state.userDetails.userId,
-          updates: {
-            online: false
-          }
-        });
-        commit("setUserDetails", {});
-        this.$router.replace("/auth");
+        if (this.$router.currentRoute.fullPath !== "/auth") {
+          this.$router.push("/auth");
+        }
       }
     });
   },
