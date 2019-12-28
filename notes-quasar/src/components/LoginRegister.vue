@@ -22,8 +22,7 @@
       type="password"
       label="Contraseña"
     ></q-input>
-    <div class="row">
-      <q-space />
+    <div class="row justify-center">
       <q-btn
         type="submit"
         color="primary"

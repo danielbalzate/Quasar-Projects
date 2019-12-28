@@ -42,25 +42,20 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-      content-class="bg-grey-2"
-    >
+    <q-drawer v-model="leftDrawerOpen" bordered content-class="bg-grey-2">
       <q-list>
         <q-item-label header>Menú de tareas</q-item-label>
         <!-- Primer Botón -->
-        <q-item clickable to="/#">
+        <!-- <q-item clickable to="/#">
           <q-item-section avatar>
             <q-icon name="account_circle" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Base</q-item-label>
           </q-item-section>
-        </q-item>
+        </q-item> -->
         <!-- Segúndo Botón -->
-        <q-item clickable to="/notes">
+        <q-item v-if="userDetails.userId" clickable to="/notes">
           <q-item-section avatar>
             <q-icon name="playlist_add_check" />
           </q-item-section>
@@ -69,21 +64,30 @@
           </q-item-section>
         </q-item>
         <!-- Tercero Botón -->
-        <q-item clickable to="/users">
+        <q-item v-if="userDetails.userId" clickable to="/users">
           <q-item-section avatar>
             <q-icon name="face" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Usuario</q-item-label>
+            <q-item-label>Usuarios</q-item-label>
           </q-item-section>
         </q-item>
         <!-- Cuarto Botón -->
-        <q-item clickable to="/auth">
+        <q-item clickable to="/auth" v-if="!userDetails.userId">
           <q-item-section avatar>
             <q-icon name="directions_run" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Autentificación</q-item-label>
+          </q-item-section>
+        </q-item>
+        <!-- Quinto Botón -->
+        <q-item v-if="userDetails.userId" clickable to="/#" @click="logoutUser">
+          <q-item-section avatar>
+            <q-icon name="exit_to_app" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Cerrar sesión</q-item-label>
           </q-item-section>
         </q-item>
       </q-list>
@@ -98,6 +102,11 @@
 <script>
 import { mapState, mapActions } from "vuex";
 export default {
+  data() {
+    return {
+      leftDrawerOpen: false
+    };
+  },
   computed: {
     ...mapState("store", ["userDetails"]),
     title() {
@@ -110,11 +119,6 @@ export default {
   },
   methods: {
     ...mapActions("store", ["logoutUser"])
-  },
-  data() {
-    return {
-      leftDrawerOpen: false
-    };
   }
 };
 </script>

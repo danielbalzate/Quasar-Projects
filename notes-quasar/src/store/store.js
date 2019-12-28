@@ -1,12 +1,20 @@
+import Vue from "vue";
 import { firebaseAuth, firebaseDB } from "boot/firebase";
 
 const state = {
-  userDetails: {}
+  userDetails: {},
+  users: {}
 };
 
 const mutations = {
   setUserDetails(state, payload) {
     state.userDetails = payload;
+  },
+  addUser(state, payload) {
+    Vue.set(state.users, payload.userId, payload.userDetails);
+  },
+  updateUser(state, payload) {
+    Object.assign(state.users[payload.userId], payload.userDetails);
   }
 };
 
@@ -51,7 +59,6 @@ const actions = {
       if (user) {
         let userId = firebaseAuth.currentUser.uid;
         firebaseDB.ref("users/" + userId).once("value", snapshot => {
-          console.log("snapshot", snapshot);
           let userDetails = snapshot.val();
           commit("setUserDetails", {
             name: userDetails.name,
@@ -65,7 +72,8 @@ const actions = {
             online: true
           }
         });
-        this.$router.push("/notes");
+        dispatch("firebaseGetUsers");
+        this.$router.push("/");
       } else {
         dispatch("firebaseUpdateUser", {
           userId: state.userDetails.userId,
@@ -81,10 +89,38 @@ const actions = {
 
   firebaseUpdateUser({}, payload) {
     firebaseDB.ref("users/" + payload.userId).update(payload.updates);
+  },
+  firebaseGetUsers({ commit }) {
+    firebaseDB.ref("users").on("child_added", snapshot => {
+      let userDetails = snapshot.val();
+      let userId = snapshot.key;
+      commit("addUser", {
+        userId,
+        userDetails
+      });
+    });
+    firebaseDB.ref("users").on("child_changed", snapshot => {
+      let userDetails = snapshot.val();
+      let userId = snapshot.key;
+      commit("updateUser", {
+        userId,
+        userDetails
+      });
+    });
   }
 };
 
-const getters = {};
+const getters = {
+  users: state => {
+    let usersFiltered = {};
+    Object.keys(state.users).forEach(key => {
+      if (key !== state.userDetails.userId) {
+        usersFiltered[key] = state.users[key];
+      }
+    });
+    return usersFiltered;
+  }
+};
 
 export default {
   namespaced: true,
