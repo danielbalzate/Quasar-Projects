@@ -34,7 +34,7 @@ const actions = {
       .catch(error => {
         console.log(error.message);
         Notify.create({
-          position: 'top',
+          position: "top",
           message: "Por favor verifica tu correo o tu contraseña",
           color: "warning",
           icon: "error_outline"
@@ -56,8 +56,8 @@ const actions = {
       .catch(error => {
         console.log("Error al ingresar", error.message);
         Notify.create({
-          position: 'top',
-          message: "Por favor verifica tu correo o tu contraseña",
+          position: "top",
+          message: "Por favor verifica tu correo electrónico o tu contraseña",
           color: "warning",
           icon: "error_outline"
         });

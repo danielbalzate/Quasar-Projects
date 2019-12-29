@@ -1,6 +1,5 @@
 <template>
-  <!-- <q-form @submit.prevent="submitForm"> -->
-  <q-form>
+  <q-form @submit.prevent="submitForm">
     <q-input
       v-if="tab == '¡Registrate!'"
       class="q-mb-md"
@@ -43,12 +42,7 @@
         /> </template
     ></q-input>
     <div class="row justify-center">
-      <q-btn
-        type="submit"
-        color="primary"
-        :label="tab"
-        @click="submitForm()"
-      ></q-btn>
+      <q-btn type="submit" color="primary" :label="tab"></q-btn>
     </div>
   </q-form>
 </template>

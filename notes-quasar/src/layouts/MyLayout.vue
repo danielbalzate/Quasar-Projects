@@ -45,49 +45,58 @@
     <q-drawer v-model="leftDrawerOpen" bordered content-class="bg-grey-2">
       <q-list>
         <q-item-label header>Menú principal</q-item-label>
-        <!-- Primer Botón -->
-        <!-- <q-item clickable to="/#">
+        <!-- Botón Base -->
+        <q-item clickable to="/#" v-if="!userDetails.userId">
           <q-item-section avatar>
             <q-icon name="account_circle" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Base</q-item-label>
           </q-item-section>
-        </q-item> -->
-        <!-- Primer Botón -->
+        </q-item>
+        <!-- Botón Perfil de usuario -->
         <q-item v-if="userDetails.userId" clickable to="/userProfile">
           <q-item-section avatar>
-            <q-icon name="face" />
+            <q-icon name="whatshot" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Mi perfil</q-item-label>
           </q-item-section>
         </q-item>
-        <!-- Segúndo Botón -->
+        <!--  Botón Notas Globales-->
         <q-item v-if="userDetails.userId" clickable to="/notes">
           <q-item-section avatar>
             <q-icon name="playlist_add_check" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Notas</q-item-label>
+            <q-item-label>Notas Globales</q-item-label>
           </q-item-section>
         </q-item>
-        <!-- Tercero Botón -->
+        <!-- Botón lista de usuarios Globales -->
         <q-item v-if="userDetails.userId" clickable to="/users">
           <q-item-section avatar>
             <q-icon name="face" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Usuarios</q-item-label>
+            <q-item-label>Usuarios Globales</q-item-label>
           </q-item-section>
         </q-item>
-        <!-- Cuarto Botón -->
+        <!-- Botón autentificación -->
         <q-item clickable to="/auth" v-if="!userDetails.userId">
           <q-item-section avatar>
             <q-icon name="directions_run" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Autentificación</q-item-label>
+          </q-item-section>
+        </q-item>
+        <!-- Tercero Botón -->
+        <q-item v-if="userDetails.userId" clickable to="/uploadImage">
+          <q-item-section avatar>
+            <q-icon name="image" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Subir imagen a Firebase</q-item-label>
           </q-item-section>
         </q-item>
         <!-- Quinto Botón -->

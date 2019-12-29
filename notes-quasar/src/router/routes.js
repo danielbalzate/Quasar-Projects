@@ -10,7 +10,11 @@ const routes = [
       },
       { path: "/users", component: () => import("pages/PageUsers.vue") },
       { path: "/auth", component: () => import("pages/PageAuth.vue") },
-      { path: "/notes", component: () => import("pages/PageNotes.vue") }
+      { path: "/notes", component: () => import("pages/PageNotes.vue") },
+      {
+        path: "/uploadImage",
+        component: () => import("pages/PageUploadImage.vue")
+      }
     ]
   }
 ];
