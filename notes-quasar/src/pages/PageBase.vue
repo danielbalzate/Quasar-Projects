@@ -30,6 +30,13 @@
           >
             <div>
               {{ item.content }}
+              <q-btn
+                flat
+                round
+                color="red"
+                icon="cancel"
+                @click="deleteEvent(index, item.id)"
+              ></q-btn>
             </div>
           </q-timeline-entry>
 
@@ -50,7 +57,8 @@ export default {
       title: "Notas Globales",
       subtitle: "[Quasar & Firebase]",
       index: null,
-      events: []
+      events: [],
+      id: null
     };
   },
   computed: {
@@ -68,7 +76,10 @@ export default {
   methods: {
     async listEvents() {
       try {
-        const resDB = await db.collection("events").get();
+        const resDB = await db
+          .collection("events")
+          .orderBy("date", "asc")
+          .get();
 
         resDB.forEach(res => {
           const event = {
@@ -85,6 +96,38 @@ export default {
       } catch (error) {
         console.log("TCL: listEvents -> error", error);
       }
+    },
+    deleteEvent(index, id) {
+      this.$q
+        .dialog({
+          title: "¡Cuidado!",
+          message: "¿Desea eliminar el evento?",
+          cancel: true,
+          persistent: true
+        })
+        .onOk(async () => {
+          try {
+            await db
+              .collection("events")
+              .doc(id)
+              .delete();
+            this.events.splice(index, 1);
+            this.$q.notify({
+              message: "Evento eliminada correctamente!",
+              color: "lime-6",
+              textColor: "white",
+              icon: "delete_sweep"
+            });
+          } catch (error) {
+            console.log("error");
+            this.$q.notify({
+              message: "¡Ha ocurrido un error eliminando el evento!",
+              color: "red-6",
+              textColor: "white",
+              icon: "delete_sweep"
+            });
+          }
+        });
     }
   }
 };

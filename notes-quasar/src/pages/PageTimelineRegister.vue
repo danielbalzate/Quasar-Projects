@@ -24,8 +24,13 @@
       </q-step>
 
       <q-step :name="2" title="Fecha del evento" icon="event" :done="step > 2">
-        <div class="q-pa-md" style="max-width:50%">
-          <q-date v-model="modelDate" landscape />
+        <div class="q-pa-md row" style="max-width:100%">
+          <q-date
+            class="col-5"
+            v-model="modelDate"
+            mask="YYYY-MM-DD HH:mm"
+            landscape
+          />
         </div>
       </q-step>
 
@@ -125,8 +130,6 @@
 <script>
 import { db } from "boot/firebase.js";
 import { date } from "quasar";
-let timeStamp = Date.now();
-let formattedString = date.formatDate(timeStamp, "YYYY/MM/DD");
 export default {
   data() {
     return {
@@ -136,16 +139,22 @@ export default {
       modelIcon: "",
       modelPosition: "left",
       modelColor: "green",
-      modelDate: formattedString,
+      modelDate: date.formatDate(Date.now(), "YYYY-MM-DD HH:mm"),
       optionsPosition: ["left", "right"],
       optionsColor: [
         "green",
         "red",
         "purple",
+        "deep-purple",
+        "cyan",
+        "lime",
+        "light-green",
         "pink",
         "orange",
+        "deep-orange",
         "blue",
-        "yellow"
+        "yellow",
+        "indigo"
       ],
       id: null,
       modalVisible: false
@@ -191,6 +200,9 @@ export default {
         }
         this.modelTitle = "";
         this.modelTextarea = "";
+        let timeStamp = Date.now();
+        let formattedString = date.formatDate(timeStamp, "YYYY-MM-DD HH:mm");
+        this.modelDate = formattedString;
         this.$q.notify({
           message: "Agregaste un evento correctamente.",
           color: "green",
