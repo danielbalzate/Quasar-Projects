@@ -135,7 +135,7 @@ export default {
 
         this.$q.notify({
           message: "¡Tarea actualizada correctamente!",
-          color: "dark",
+          color: "green",
           textColor: "white",
           icon: "cloud_done"
         });

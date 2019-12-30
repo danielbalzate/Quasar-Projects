@@ -14,6 +14,10 @@ const routes = [
       {
         path: "/uploadImage",
         component: () => import("pages/PageUploadImage.vue")
+      },
+      {
+        path: "/timelineRegister",
+        component: () => import("pages/PageTimelineRegister.vue")
       }
     ]
   }

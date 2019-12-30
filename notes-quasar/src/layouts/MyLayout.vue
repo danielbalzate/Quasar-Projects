@@ -81,6 +81,15 @@
             <q-item-label>Usuarios Globales</q-item-label>
           </q-item-section>
         </q-item>
+        <!-- Botón registrar líneas de tiempo -->
+        <q-item v-if="!userDetails.userId" clickable to="/timelineRegister">
+          <q-item-section avatar>
+            <q-icon name="flash_on" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Registrar línea de tiempo</q-item-label>
+          </q-item-section>
+        </q-item>
         <!-- Botón autentificación -->
         <q-item clickable to="/auth" v-if="!userDetails.userId">
           <q-item-section avatar>
@@ -133,6 +142,8 @@ export default {
       else if (currentPath == "/notes") return "Bloc de notas";
       else if (currentPath == "/users") return "Usuarios";
       else if (currentPath == "/auth") return "Autentificación";
+      else if (currentPath == "/timelineRegister")
+        return "Registrar línea de tiempo";
     }
   },
   methods: {
