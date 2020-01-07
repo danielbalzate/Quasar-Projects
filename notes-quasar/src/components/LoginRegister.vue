@@ -8,6 +8,11 @@
       hint="Ingresa tu nombre o apodo"
       v-model="formData.name"
       label="Nombre"
+      :rules="[
+        val =>
+          (val.length != 0 && val.length <= 20) ||
+          'Tu usuario no debe superar los 20 caracteres'
+      ]"
     >
       <template v-slot:append>
         <q-icon name="perm_identity" />

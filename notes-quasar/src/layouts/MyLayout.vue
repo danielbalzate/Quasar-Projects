@@ -109,7 +109,7 @@
           </q-item-section>
         </q-item>
         <!-- Quinto Botón -->
-        <q-item v-if="userDetails.userId" clickable to="/#" @click="logoutUser">
+        <q-item v-if="userDetails.userId" to="/auth" @click="logoutUser">
           <q-item-section avatar>
             <q-icon name="exit_to_app" />
           </q-item-section>
