@@ -1,7 +1,7 @@
 <template>
   <q-page class="flex">
     <template>
-      <div class="q-px-lg q-pb-md " style="width:100%">
+      <div class="q-px-lg q-pb-md" style="width:100%">
         <q-timeline :layout="layout" color="secondary">
           <q-timeline-entry heading>
             {{ title }}
@@ -33,6 +33,7 @@
               <q-btn
                 flat
                 round
+                size="sm"
                 color="red"
                 icon="cancel"
                 @click="deleteEvent(index, item.id)"
@@ -49,6 +50,7 @@
   </q-page>
 </template>
 <script>
+import { AppFullscreen } from "quasar";
 import { db } from "boot/firebase";
 import { date } from "quasar";
 export default {

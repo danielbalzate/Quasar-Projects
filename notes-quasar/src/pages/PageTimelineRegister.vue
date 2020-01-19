@@ -66,9 +66,10 @@
           </q-select>
           <q-select
             class="q-pb-md col-6"
-            color="primary"
+            :color="modelColor"
             filled
             v-model="modelColor"
+            :bg-color="modelColor"
             :options="optionsColor"
             label="Color del evento"
           >
@@ -142,19 +143,31 @@ export default {
       modelDate: date.formatDate(Date.now(), "YYYY-MM-DD HH:mm"),
       optionsPosition: ["left", "right"],
       optionsColor: [
-        "green",
-        "red",
-        "purple",
-        "deep-purple",
-        "cyan",
-        "lime",
-        "light-green",
-        "pink",
-        "orange",
-        "deep-orange",
-        "blue",
-        "yellow",
-        "indigo"
+        "red-8",
+        "red-10",
+        "pink-6",
+        "pink-9",
+        "purple-8",
+        "purple-10",
+        "deep-purple-7",
+        "deep-purple-10",
+        "indigo-6",
+        "indigo-10",
+        "blue-7",
+        "blue-10",
+        "cyan-6",
+        "cyan-9",
+        "teal-6",
+        "teal-9",
+        "green-6",
+        "green-9",
+        "lime-6",
+        "lime-14",
+        "yellow-6",
+        "yellow-10",
+        "amber-6",
+        "amber-10",
+        "orange-7"
       ],
       id: null,
       modalVisible: false
