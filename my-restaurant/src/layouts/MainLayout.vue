@@ -10,12 +10,23 @@
           icon="menu"
           aria-label="Menu"
         />
-
-        <q-toolbar-title>
-          Quasar App
+        <q-btn
+          v-if="$router.history.current.fullPath.includes('/profile')"
+          v-go-back.single
+          color="primary"
+          icon="arrow_back"
+          label="Regresar"
+        />
+        <q-btn
+          to="/auth"
+          color="primary"
+          icon="account_circle"
+          push
+          class="absolute-right q-pr-sm"
+        />
+        <q-toolbar-title class="absolute-center">
+          {{ title }}
         </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
@@ -26,7 +37,7 @@
       content-class="bg-grey-1"
     >
       <q-list>
-        <q-item-label header class="text-grey-8">Essential Links</q-item-label>
+        <q-item-label header class="text-grey-8">Menú principal</q-item-label>
         <EssentialLink
           v-for="link in essentialLinks"
           :key="link.title"
@@ -42,57 +53,45 @@
 </template>
 
 <script>
-import EssentialLink from 'components/EssentialLink'
+import EssentialLink from "components/EssentialLink";
 
 export default {
-  name: 'MainLayout',
+  name: "MainLayout",
 
   components: {
     EssentialLink
   },
-
-  data () {
+  computed: {
+    title() {
+      let currentPath = this.$router.history.current.fullPath;
+      /* console.log(
+        "TCL: title -> this.$router.history.current.fullPath",
+        this.$router.history.current.fullPath
+      ); */
+      if (currentPath == "/") return "My Restaurant";
+      else if (currentPath == "/users") return "Usuarios";
+      else if (currentPath == "/auth") return "Autentificación";
+      else if (currentPath == "/profile") return "Perfil de usuario";
+    }
+  },
+  data() {
     return {
       leftDrawerOpen: false,
       essentialLinks: [
         {
-          title: 'Docs',
-          caption: 'quasar.dev',
-          icon: 'school',
-          link: 'https://quasar.dev'
+          title: "Autentificacion",
+          caption: "Registro y logueo de usuarios",
+          icon: "school",
+          to: "/auth"
         },
         {
-          title: 'Github',
-          caption: 'github.com/quasarframework',
-          icon: 'code',
-          link: 'https://github.com/quasarframework'
-        },
-        {
-          title: 'Discord Chat Channel',
-          caption: 'chat.quasar.dev',
-          icon: 'chat',
-          link: 'https://chat.quasar.dev'
-        },
-        {
-          title: 'Forum',
-          caption: 'forum.quasar.dev',
-          icon: 'record_voice_over',
-          link: 'https://forum.quasar.dev'
-        },
-        {
-          title: 'Twitter',
-          caption: '@quasarframework',
-          icon: 'rss_feed',
-          link: 'https://twitter.quasar.dev'
-        },
-        {
-          title: 'Facebook',
-          caption: '@QuasarFramework',
-          icon: 'public',
-          link: 'https://facebook.quasar.dev'
+          title: "Github",
+          caption: "Daniel B. Alzate",
+          icon: "whatshot",
+          link: "https://github.com/danielbalzate"
         }
       ]
-    }
+    };
   }
-}
+};
 </script>

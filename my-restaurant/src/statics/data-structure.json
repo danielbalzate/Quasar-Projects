@@ -1,0 +1,19 @@
+{
+  "users": {
+    "USERID2": {
+      "name": "Dani",
+      "email": "danny@gm.com",
+      "online": true
+    },
+    "USERID3": {
+      "name": "Sofi",
+      "email": "sofi@gm.com",
+      "online": false
+    },
+    "USERID5": {
+      "name": "Roby",
+      "email": "roby@gm.com",
+      "online": false
+    }
+  }
+}

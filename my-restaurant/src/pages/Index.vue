@@ -1,11 +1,9 @@
 <template>
-  <q-page class="flex flex-center">
-    <img alt="Quasar logo" src="~assets/quasar-logo-full.svg">
+  <q-page class="flex">
+    <h5>Timeline page</h5>
   </q-page>
 </template>
 
 <script>
-export default {
-  name: 'PageIndex'
-}
+export default {};
 </script>
